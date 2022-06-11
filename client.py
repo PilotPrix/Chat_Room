@@ -22,9 +22,9 @@ startTime = 0
 def receive():
     while True:
         try:
-            message = client.recv(1024).decode("ascii")
+            message = client.recv(1024).decode("UTF-8")
             if message == "NICK":
-                client.send(nickname.encode("ascii"))
+                client.send(nickname.encode("UTF-8"))
             elif message == "ping":
                 print(f"{round((time.time() - startTime) / 1000, 10)}ms")
             else:
@@ -38,7 +38,7 @@ def write():
     while True:
         i = input()
         message = f"{nickname}: {i}"
-        client.send(message.encode("ascii"))
+        client.send(message.encode("UTF-8"))
 
         if i == "ping":
             global startTime
